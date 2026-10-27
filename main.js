@@ -14,11 +14,28 @@
       d.children[2].innerHTML = fmt(p[2]) + '<small>' + usd(p[2]) + (cat === 'Monthly retainers' ? ' / month' : '') + '</small>';
       list.appendChild(d);
     });
-    tabs.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.c === cat); });
+    tabs.querySelectorAll('button').forEach(function (b) {
+      var selected = b.dataset.c === cat;
+      b.setAttribute('aria-selected', selected);
+      b.tabIndex = selected ? 0 : -1;
+      if (selected) list.setAttribute('aria-labelledby', b.id);
+    });
   }
   cats.forEach(function (c, i) {
-    var b = document.createElement('button'); b.className = 'tab'; b.type = 'button'; b.dataset.c = c; b.textContent = c; b.setAttribute('role', 'tab');
+    var b = document.createElement('button'); b.className = 'tab'; b.type = 'button'; b.id = 'price-tab-' + i; b.dataset.c = c; b.textContent = c; b.setAttribute('role', 'tab'); b.setAttribute('aria-controls', 'plist');
     b.addEventListener('click', function () { show(c); }); tabs.appendChild(b);
+    b.addEventListener('keydown', function (e) {
+      var buttons = Array.prototype.slice.call(tabs.querySelectorAll('[role="tab"]'));
+      var index = buttons.indexOf(b), next = index;
+      if (e.key === 'ArrowRight') next = (index + 1) % buttons.length;
+      else if (e.key === 'ArrowLeft') next = (index - 1 + buttons.length) % buttons.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = buttons.length - 1;
+      else return;
+      e.preventDefault();
+      buttons[next].focus();
+      show(buttons[next].dataset.c);
+    });
   });
   show(cats[0]);
   // service dropdown from prices
@@ -35,10 +52,41 @@
   $('#emailbtn').addEventListener('click', function () { if (!form.reportValidity()) return; location.href = 'mailto:maxthompson786@gmail.com?subject=' + encodeURIComponent('Quote request') + '&body=' + encodeURIComponent(msg()); });
   // mobile menu
   var m = $('.menu'), ul = $('.nav ul'); m.addEventListener('click', function () { var o = ul.classList.toggle('open'); m.setAttribute('aria-expanded', o); });
-  ul.addEventListener('click', function () { ul.classList.remove('open'); });
+  ul.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { ul.classList.remove('open'); m.setAttribute('aria-expanded', 'false'); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && ul.classList.contains('open')) {
+      ul.classList.remove('open'); m.setAttribute('aria-expanded', 'false'); m.focus();
+    }
+  });
   // lightbox
-  var lb = $('.lb'), lbi = $('.lb img');
-  document.querySelectorAll('.work figure').forEach(function (f) { f.tabIndex = 0; var open = function () { lbi.src = f.querySelector('img').src; lbi.alt = f.querySelector('img').alt; lb.classList.add('on'); }; f.addEventListener('click', open); f.addEventListener('keydown', function (e) { if (e.key === 'Enter') open(); }); });
-  lb.addEventListener('click', function () { lb.classList.remove('on'); }); document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('on'); });
+  var lb = $('.lb'), lbwebp = $('#lbwebp'), lbi = $('.lb img'), lbClose = $('.lb button'), lastTrigger;
+  function closeLightbox() {
+    lb.classList.remove('on'); lb.setAttribute('aria-hidden', 'true');
+    if (lastTrigger) lastTrigger.focus();
+  }
+  document.querySelectorAll('.work figure').forEach(function (f) {
+    f.tabIndex = 0; f.setAttribute('role', 'button'); f.setAttribute('aria-haspopup', 'dialog');
+    var open = function () {
+      lastTrigger = f;
+      var img = f.querySelector('img'); lbi.src = img.src; lbi.alt = img.alt;
+      var sizes = window.IMAGE_SIZES[img.getAttribute('src')];
+      lbwebp.srcset = sizes.small.path + ' ' + sizes.small.width + 'w, ' + sizes.full.path + ' ' + sizes.full.width + 'w';
+      lbwebp.sizes = '100vw';
+      lb.classList.add('on'); lb.setAttribute('aria-hidden', 'false'); lbClose.focus();
+    };
+    f.addEventListener('click', open);
+    f.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+  });
+  lbClose.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('on')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'Tab') { e.preventDefault(); lbClose.focus(); }
+  });
   $('#yr').textContent = new Date().getFullYear();
 })();
