@@ -1,0 +1,10 @@
+{
+  "_help": "Fill the values between the quotes, save this file, then run update_business_details.py. Leave a value empty if you do not have it yet: it will stay as a [TOKEN] in the documents and will not appear on the website.",
+  "registered_business_name": "",
+  "business_registration_no": "",
+  "kra_pin": "",
+  "business_address": "",
+  "mpesa_till_or_paybill": "",
+  "odpc_statement": "",
+  "last_updated": ""
+}

@@ -1,0 +1,31 @@
+UPDATE BUSINESS DETAILS: fill your details once, update every document and the website
+
+WHAT IT DOES
+Your Word documents (agreements, policies, WhatsApp guide, company profile and more) contain details written in CAPITALS in square brackets, like [BUSINESS ADDRESS].
+This tool replaces them everywhere at once, so you do not have to edit 20 files. Your original documents are never changed. Filled copies are saved in the folder "Filled_Documents", so you can run the tool again whenever a detail changes.
+
+THE DETAILS
+[REGISTERED BUSINESS NAME]      name on your registration certificate
+[BUSINESS REGISTRATION NO.]     your registration number
+[KRA PIN]                       your KRA PIN (never shown on the website)
+[BUSINESS ADDRESS]              postal or physical address you are happy to put on contracts and policies
+[M-PESA TILL]                   your M-Pesa Till or Paybill (used in the WhatsApp guide and the demand letters)
+[ODPC STATUS]                   one sentence on ODPC registration, written only after you have checked the ODPC thresholds (the Compliance Roadmap explains how)
+[LAST UPDATED]                  date on the policies (if left empty, today's date is used)
+
+STEPS (needs Python and python-docx)
+1. Open a terminal in this folder and run:  pip install python-docx
+2. Open business-details.json in any text editor. Type your details between the quotes. Save.
+3. Run:  python update_business_details.py
+4. Open the folder "Filled_Documents" for the updated Word files. Check them, then send or print.
+5. Upload "Filled_Documents/Website_Upload/js/business-details.js" to the js folder in your website repository on GitHub (Add file > Upload files, commit). The privacy policy, policies page and footer on the website update by themselves.
+To include the brand package documents (such as the editable company profile), add its folder when you run the tool:
+   python update_business_details.py "path\to\Max_imum_Designs_Brand_Package"
+
+NO PYTHON? DO IT BY HAND
+In Word press Ctrl+H (Find and Replace), type the token (for example [BUSINESS ADDRESS]) in "Find what" and your detail in "Replace with", then Replace All. Repeat for each token and each document.
+For the website, edit js/business-details.js directly on GitHub (click the file, then the pencil icon) and commit.
+
+WHAT IT CANNOT DO
+It does not change PDFs, images, PSD files, the pitch deck or the printed stationery. Re-export those from the source documents when needed. Invoices, quotations and receipts have blank lines for your M-Pesa and KRA PIN: write them in by hand or in a PDF editor.
+This tool fills in details only. Have a Kenyan advocate review the legal documents.

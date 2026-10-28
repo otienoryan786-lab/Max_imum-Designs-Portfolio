@@ -1,0 +1,1 @@
+(function(){var m=document.querySelector('.menu'),ul=document.querySelector('.nav ul');if(m&&ul){m.addEventListener('click',function(){var o=ul.classList.toggle('open');m.setAttribute('aria-expanded',o);});ul.addEventListener('click',function(){ul.classList.remove('open');});}var y=document.getElementById('yr');if(y)y.textContent=new Date().getFullYear();})();

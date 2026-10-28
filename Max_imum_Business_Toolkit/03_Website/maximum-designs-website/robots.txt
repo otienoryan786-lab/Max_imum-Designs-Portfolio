@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://otienoryan786-lab.github.io/Max_imum-Designs/sitemap.xml

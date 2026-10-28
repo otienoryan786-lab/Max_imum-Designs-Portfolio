@@ -1,0 +1,9 @@
+# Keep private business files out of the public website repository
+business-details.json
+Filled_Documents/
+*.docx
+.env
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
