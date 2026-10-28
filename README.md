@@ -18,7 +18,7 @@ A fast, static site built with HTML, CSS and JavaScript. No build step or backen
 - **Policies:** `policies.html`, `privacy.html`, `service-terms.html`, `ai-policy.html` and `terms.html`. Review business-specific details and dates before publishing.
 - **PDF portfolio:** replace `downloads/Max_imum_Designs_Portfolio_2026.pdf` when the portfolio changes.
 
-The quote form opens WhatsApp or an email app with a prepared message; it does not store submissions. If you later use a form service, update the Privacy Policy.
+The quote form opens WhatsApp or an email app with a prepared message; it does not store submissions. The homepage chat guide answers common questions locally in the browser and does not send or store chat messages. It is automated, not live support; visitors can use its WhatsApp link to contact Ryan. If you later connect a chat or form service, update the Privacy Policy.
 
 ## Preview locally
 Open the folder in VS Code and use Live Server, or run `python -m http.server 8000` from this folder and visit http://localhost:8000.
