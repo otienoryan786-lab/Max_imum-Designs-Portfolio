@@ -143,7 +143,7 @@ footer{background:var(--ink);color:var(--lilac);padding:40px 0;font-size:14px}fo
 .case-card:hover .case-image img{transform:scale(1.025)}
 .case-body{padding:18px 20px 20px;display:flex;flex:1;flex-direction:column;align-items:flex-start}
 .case-body h3{margin:7px 0 8px;font-size:19px;line-height:1.3}
-.case-summary{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:0;color:var(--slate);font-size:14px}
+.case-summary{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;margin:0;color:var(--slate);font-size:14px}
 .case-deliverables{margin:12px 0 14px;color:var(--violet);font-family:"Courier New",monospace;font-size:12px;font-weight:700}
 .case-open{margin-top:auto;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:0;border-radius:999px;background:var(--ink);color:var(--lime);font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .15s,transform .15s}
 .case-open span{font-size:18px;line-height:1}
@@ -155,7 +155,7 @@ footer{background:var(--ink);color:var(--lilac);padding:40px 0;font-size:14px}fo
 .pcard:hover,.pcard:focus-visible{transform:translateY(-4px);box-shadow:0 14px 30px rgba(91,46,255,.18);outline:none;border-color:var(--violet)}
 .pcard picture{display:block;width:100%;aspect-ratio:16/10;overflow:hidden;background:var(--cloud)}
 .pcard img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover;background:var(--cloud)}
-.pb{flex:1;padding:16px 20px 22px}.pb h3{margin:4px 0 6px;font-size:18px}.pb p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin:0;color:var(--slate);font-size:14px}
+.pb{flex:1;padding:16px 20px 22px}.pb h3{margin:4px 0 6px;font-size:18px}.pb p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;margin:0;color:var(--slate);font-size:14px}
 .ty{font-family:"Courier New",monospace;font-size:12px;font-weight:700;color:var(--violet);text-transform:uppercase;letter-spacing:.05em}
 .st{display:inline-block;font-family:"Courier New",monospace;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;text-transform:uppercase}
 .st.completed{background:var(--ink);color:var(--lime)}.st.inprogress{background:var(--violet);color:#fff}.st.planned{background:var(--lilac);color:var(--ink)}
